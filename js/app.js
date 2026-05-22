@@ -1,13 +1,37 @@
-const input = document.querySelector("input"); //Selecciona el input
-const button = document.querySelector("button"); //Selecciona el boton
-const tasks = document.querySelector("ul"); //Selecciona la lista
+const input = document.querySelector("input");
+const button = document.querySelector("button");
+const list = document.querySelector("ul");
 
-button.addEventListener("click", addTask); //Se activa al dar click al boton
+let tasks = [];
 
-function addTask() { //Se define una funcion
-    if (input.value.trim() === "") return; // Se asegura de que el input no esté vacío
-    const newItem = document.createElement("li"); //Se crea un nuevo elemento
-    newItem.textContent = input.value; //Se asigna el valor del input al nuevo elemento
-    tasks.appendChild(newItem); //Se agrega el nuevo elemento a la lista
-    input.value = ""; //Se limpia el input
+const savedTasks = localStorage.getItem("tasks");
+if (savedTasks) {
+    tasks = JSON.parse(savedTasks);
+    renderTasks();
+}
+
+button.addEventListener("click", addTask);
+
+function addTask() {    
+    const text = input.value;
+    if(text === "") return;
+    tasks.push(text);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderTasks();
+    input.value = "";
+}
+
+function renderTasks() {
+    list.innerHTML = ""; 
+
+    tasks.forEach(function(task) {
+        const listItem = document.createElement("li");
+        listItem.textContent = task;
+        list.appendChild(listItem); 
+    });
+}
+
+function deleteTask() {
+    tasks.pop();
+    renderTasks();
 }   

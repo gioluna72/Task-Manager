@@ -6,7 +6,8 @@ body {
 }
 
 .navbar {
-    background-color: #ad03e6; /* Color vino */
+    background-color: #ad03e6;
+    /* Color vino */
     color: white;
     padding: 15px 20px;
     text-align: center;
@@ -27,9 +28,15 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
 input {
+    flex: 1; /* Ocupará el espacio restante automáticamente */
     padding: 10px;
-    width: calc(100% - 110px);
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
