@@ -31,15 +31,15 @@ body {
 .input-group {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 input {
-    flex: 1; /* Ocupará el espacio restante automáticamente */
+    flex: 1; /* Esto hace que el input ocupe el espacio disponible */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 button {
@@ -50,6 +50,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    white-space: nowrap; /* Evita que el texto del botón se corte */
 }
 
 button:hover {

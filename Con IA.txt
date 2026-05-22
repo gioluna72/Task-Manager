@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h2>TaskMaster</h2>
+    </nav>
+
+    <div class="container">
+        <h1>Mis Tareas</h1>
+
+        <div class="input-group">
+            <input type="text" placeholder="¿Qué necesitas hacer hoy?">
+            <button>Agregar</button>
+        </div>
+
+        <ul id="tasks"></ul>
+    </div>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+:root {
+    --primary-color: #8e2de2;
+    --primary-gradient: linear-gradient(135deg, #4a00e0, #8e2de2);
+    --bg-color: #f3f4f6;
+    --text-main: #1f2937;
+    --text-muted: #9ca3af;
+    --card-bg: #ffffff;
+    --item-bg: #ffffff;
+    --border-color: #e5e7eb;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(142, 45, 226, 0.2);
+}
+
+.navbar h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    width: 90%;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 2px solid transparent;
+    background-color: #f9fafb;
+    border-radius: 14px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+input:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: #c4b5fd;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+}
+
+button {
+    padding: 16px 24px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(142, 45, 226, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(142, 45, 226, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: var(--item-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    list-style-type: none;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    animation: fadeIn 0.3s ease-out;
+}
+
+li:hover {
+    border-color: #c4b5fd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: none;
+    margin-left: 10px;
+}
+
+.delete-btn:hover {
+    background-color: #fee2e2;
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
+.delete-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+const input = document.querySelector("input");
+const button = document.querySelector("button");
+const list = document.querySelector("ul");
+
+let tasks = [];
+
+// Cargar tareas al iniciar
+const savedTasks = localStorage.getItem("tasks");
+if (savedTasks) {
+    tasks = JSON.parse(savedTasks);
+    renderTasks();
+}
+
+button.addEventListener("click", addTask);
+input.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        addTask();
+    }
+});
+
+function addTask() {    
+    const text = input.value.trim();
+    if(text === "") return;
+    
+    tasks.push(text);
+    saveTasks();
+    renderTasks();
+    input.value = "";
+}
+
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function renderTasks() {
+    list.innerHTML = ""; 
+
+    tasks.forEach(function(task, index) {
+        const listItem = document.createElement("li");
+        
+        const taskText = document.createElement("span");
+        taskText.textContent = task;
+        
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-btn";
+        deleteBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+        `;
+        
+        deleteBtn.addEventListener("click", () => {
+            deleteTask(index);
+        });
+
+        listItem.appendChild(taskText);
+        listItem.appendChild(deleteBtn);
+        
+        list.appendChild(listItem); 
+    });
+}
+
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    saveTasks();
+    renderTasks();
+}
