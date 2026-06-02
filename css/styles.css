@@ -1,70 +1,322 @@
+/* ==========================================================================
+   DISEÑO GLASSMORPHIC PREMIUM - TEMA MORADITO CLARITO (LAVANDA / LILA)
+   ========================================================================== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    /* Degradado moradito pero clarito, brillante y moderno */
+    background: linear-gradient(135deg, #f5edff 0%, #dec4fc 100%);
+    background-attachment: fixed;
+    color: #3d0066; /* Texto morado oscuro para excelente legibilidad */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
+/* Barra de navegación superior */
 .navbar {
-    background-color: #ad03e6;
-    /* Color vino */
+    background-color: #ad03e6; /* Tu morado original vibrante */
     color: white;
-    padding: 15px 20px;
+    padding: 18px 24px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(173, 3, 230, 0.25);
 }
 
 .navbar h2 {
     margin: 0;
-    font-weight: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: -0.3px;
 }
 
-.container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.input-group {
-    display: flex;
-    gap: 10px;
-}
-
-input {
-    flex: 1; /* Esto hace que el input ocupe el espacio disponible */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+/* ==========================================================================
+   TARJETA DE INICIO DE SESIÓN (.login) - VIDRIO ESMERILADO TRANSPARENTE
+   ========================================================================== */
+.login {
+    /* Vidrio blanco esmerilado que se tiñe del moradito claro del fondo */
+    background: rgba(255, 255, 255, 0.45); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Borde blanco brillante */
+    border-radius: 12px;
+    /* Sombra suave con tinte morado */
+    box-shadow: 0 20px 45px rgba(100, 0, 180, 0.12), 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    padding: 45px 35px;
+    width: 90%;
+    max-width: 440px;
+    margin: 60px auto;
     box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.4s ease-out;
 }
 
-button {
-    padding: 10px 15px;
+.login h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: #3d0066; /* Morado oscuro elegante */
+    letter-spacing: -0.5px;
+}
+
+/* Inputs de la sección de login */
+.login input {
+    width: 100%;
+    padding: 14px 18px;
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco brillante translúcido */
+    border: 1px solid rgba(173, 3, 230, 0.15); /* Borde morado sutil */
+    border-radius: 6px;
+    font-size: 16px;
+    color: #3d0066; /* Texto morado oscuro */
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.login input:focus {
+    background-color: #ffffff;
+    border-color: #ad03e6;
+    box-shadow: 0 0 0 3px rgba(173, 3, 230, 0.15);
+}
+
+.login input::placeholder {
+    color: #8f7fa3; /* Placeholder lila-grisáceo */
+    opacity: 1;
+}
+
+/* Estilo para los botones en Login */
+.login button {
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease, transform 0.1s ease;
+}
+
+/* Iniciar Sesión (Morado sólido original) */
+#iniciar-btn {
     background-color: #ad03e6;
     color: white;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    white-space: nowrap; /* Evita que el texto del botón se corte */
-}
-
-button:hover {
-    background-color: #ad03e6;
-}
-
-li {
     margin-top: 10px;
-    padding: 10px;
-    background-color: #eee;
-    border-radius: 4px;
-    list-style-type: none;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 15px rgba(173, 3, 230, 0.35);
 }
 
-ul {
+#iniciar-btn:hover {
+    background-color: #9202c4;
+    box-shadow: 0 6px 18px rgba(173, 3, 230, 0.45);
+}
+
+#iniciar-btn:active {
+    transform: scale(0.98);
+}
+
+/* Registrarse (Delineado en morado original) */
+#registrar-btn {
+    background-color: transparent;
+    color: #ad03e6;
+    border: 2px solid #ad03e6;
+}
+
+#registrar-btn:hover {
+    background-color: rgba(173, 3, 230, 0.08);
+}
+
+#registrar-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   CONTENEDOR DE TAREAS (.container) - EN ARMONÍA CON LA ESTÉTICA GLASS
+   ========================================================================== */
+.container {
+    background: rgba(255, 255, 255, 0.45); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 20px 45px rgba(100, 0, 180, 0.12), 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    padding: 40px;
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    box-sizing: border-box;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.container h1 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 1.9rem;
+    font-weight: 600;
+    text-align: center;
+    color: #3d0066;
+    letter-spacing: -0.3px;
+}
+
+/* Entrada para agregar tareas */
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 14px 18px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(173, 3, 230, 0.15);
+    border-radius: 6px;
+    font-size: 16px;
+    color: #3d0066;
+    outline: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    background-color: #ffffff;
+    border-color: #ad03e6;
+    box-shadow: 0 0 0 3px rgba(173, 3, 230, 0.15);
+}
+
+.input-group input::placeholder {
+    color: #8f7fa3;
+}
+
+.input-group button {
+    background-color: #ad03e6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    box-shadow: 0 4px 15px rgba(173, 3, 230, 0.3);
+    transition: all 0.2s ease, transform 0.1s ease;
+}
+
+.input-group button:hover {
+    background-color: #9202c4;
+}
+
+.input-group button:active {
+    transform: scale(0.95);
+}
+
+/* Listado de tareas */
+#tasks {
     padding: 0;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+#tasks li {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: #3d0066;
+    font-weight: 500;
+    list-style-type: none;
+    box-shadow: 0 4px 10px rgba(100, 0, 180, 0.04);
+    transition: all 0.15s ease;
+}
+
+#tasks li:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(100, 0, 180, 0.08);
+}
+
+/* Botón de eliminar individual en la tarea */
+.delete-btn {
+    background-color: transparent;
+    color: #f43f5e; /* Rojo elegante */
+    border: 1px solid rgba(244, 63, 94, 0.35);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #f43f5e;
+    color: white;
+    border-color: #f43f5e;
+    box-shadow: 0 4px 10px rgba(244, 63, 94, 0.2);
+}
+
+.delete-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* ==========================================================================
+   UTILIDADES & ANIMACIONES
+   ========================================================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Personalización del Scrollbar */
+#tasks::-webkit-scrollbar {
+    width: 6px;
+}
+
+#tasks::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#tasks::-webkit-scrollbar-thumb {
+    background-color: rgba(173, 3, 230, 0.15);
+    border-radius: 10px;
+}
+
+#tasks::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(173, 3, 230, 0.3);
+}
+
+/* Responsividad general */
+@media (max-width: 480px) {
+    .login {
+        padding: 35px 20px;
+        margin: 30px auto;
+    }
+    .container {
+        padding: 24px 18px;
+    }
 }
